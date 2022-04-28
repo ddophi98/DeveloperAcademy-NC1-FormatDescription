@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  CollectView.swift
 //  FormatDescription
 //
 //  Created by 김동락 on 2022/04/28.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CollectView: View {
     var body: some View {
         MainView()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct CollectView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        CollectView()
     }
 }
