@@ -14,6 +14,7 @@ enum ViewType{
 struct MainView: View {
     var body: some View {
         NavigationView{
+            //메인 버튼 나열
             VStack(spacing: 50){
                 MainButton(imageName: "photo", description: "이미지", iconColor: Color(hex: "#FFC900"), backgroundColor: Color(hex: "#FCF8CD"), viewType: .ImageCategoryView)
                 MainButton(imageName: "video.fill", description: "비디오", iconColor: Color(hex: "#FF7100"), backgroundColor: Color(hex: "#FDE4D0"), viewType: .VideoCategoryView)
@@ -32,12 +33,13 @@ struct MainButton: View{
     let iconColor: Color
     let backgroundColor: Color
     let viewType: ViewType
+    // 메뉴에 따라 이동할 뷰 반환
     func targetView() -> some View {
         switch viewType {
             case .ImageCategoryView:
-                return AnyView(ImageCategoryView())
+                return AnyView(CategoryView(fileType: .Image))
             case .VideoCategoryView:
-                return AnyView(VideoCategoryView())
+                return AnyView(CategoryView(fileType: .Video))
             case .CollectView:
                 return AnyView(CollectView())
             case .SearchView:
@@ -45,6 +47,7 @@ struct MainButton: View{
         }
     }
     var body: some View {
+        //메인 버튼 형식 구현
         NavigationLink(destination: targetView(), isActive: $isLinkActive){
             Button(action: {
                 self.isLinkActive = true
