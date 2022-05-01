@@ -73,8 +73,6 @@ struct CategoryView: View {
                     }
                 }
             }
-            .navigationTitle("이미지")
-            .navigationBarTitleDisplayMode(.inline)
             
             //선택 버튼
             Button (action: {
@@ -97,6 +95,8 @@ struct CategoryView: View {
             }
         }
         .padding()
+        .navigationTitle(fileType == .Image ? "이미지" : "비디오")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
