@@ -9,28 +9,24 @@ import SwiftUI
 
 struct DetailView: View {
     let fileType: FileType
-    var actionButtons = [ActionSheet.Button]()
-    var showingFormats = [Format]()
+    let fileList: [Format]
+    var showingFormats:[Format]
     @State var showActionSheet:Bool = false
     
     // 선택한 카테고리 정보 보여주도록 설정하기
-    init(fileType: FileType, selectedIndex: Int){
+    init(fileType: FileType, selectedIndex: [Int]){
         self.fileType = fileType
+        // 파일 리스트 정하기
         if fileType == .Image {
-            showingFormats.append(FormatData.imageFormats[selectedIndex])
-            for format in FormatData.imageFormats {
-                actionButtons.append(
-                    .default(
-                        Text("\(format.name)")
-                    ){
-//                        showingFormats.append(FormatData.imageFormats[index])
-                    }
-                )
-            }
+            fileList = FormatData.imageFormats
         } else {
-            showingFormats.append(FormatData.videoFormats[selectedIndex])
+            fileList = FormatData.videoFormats
         }
-        actionButtons.append(.cancel(Text("취소")))
+        // 카테고리에서 고른 포맷 정보 보여주기
+        showingFormats = []
+        for i in selectedIndex {
+            showingFormats.append(fileList[i])
+        }
     }
     
     var body: some View {
@@ -57,44 +53,23 @@ struct DetailView: View {
                             }
                         }
                         .padding()
-                        .frame(width: 320,height: 270)
+                        .frame(width: 320,height: 380)
                         .foregroundColor(Color.black)
-                        .background(Color(hex: "#EEE7F9"))
+                        .background(Color(hex: "#FFE3E5"))
                         .cornerRadius(15)
                         Spacer()
                     }
                 }
             }
-            .tabViewStyle(.page)
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
-            
-            //페이지 추가 버튼
-            Button (action: {
-                showActionSheet = true
-            }) {
-                Text("비교할 포맷 추가")
-                    .foregroundColor(Color.black)
-                    .font(.system(size: 20, weight: .bold))
-                    .frame(width: 200, height: 70)
-                    .background(Color(hex: "#CEE0F9"))
-                    .cornerRadius(15)
-                    .shadow(radius: 5, x: 5, y: 5)
-                    .padding(30)
-            }
-        }
-        .actionSheet(isPresented: $showActionSheet){
-            ActionSheet(
-                title: Text("포맷"),
-                message: Text("비교하고 싶은 포맷을 추가하새요"),
-                buttons: actionButtons
-            )
+            .tabViewStyle(PageTabViewStyle())
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(fileType: .Image, selectedIndex: 0)
+        DetailView(fileType: .Image, selectedIndex: [0, 1, 2])
     }
 }
 

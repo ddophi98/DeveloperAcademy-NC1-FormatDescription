@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC50FDAF281D2A2B007C25D1 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50FDAE281D2A2B007C25D1 /* TestView.swift */; };
 		BCA16E97281A1B7300D44410 /* FormatDescriptionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA16E96281A1B7300D44410 /* FormatDescriptionApp.swift */; };
 		BCA16E99281A1B7300D44410 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA16E98281A1B7300D44410 /* ContentView.swift */; };
 		BCA16E9B281A1B7300D44410 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCA16E9A281A1B7300D44410 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC50FDAE281D2A2B007C25D1 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		BCA16E93281A1B7300D44410 /* FormatDescription.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormatDescription.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCA16E96281A1B7300D44410 /* FormatDescriptionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDescriptionApp.swift; sourceTree = "<group>"; };
 		BCA16E98281A1B7300D44410 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				BCA16EB2281A5BE800D44410 /* SearchView.swift */,
 				BCA16EB6281A625E00D44410 /* FormatData.swift */,
 				BCA16EA8281A3E8A00D44410 /* ColorExtension.swift */,
+				BC50FDAE281D2A2B007C25D1 /* TestView.swift */,
 				BCA16E9A281A1B7300D44410 /* Assets.xcassets */,
 				BCA16E9C281A1B7300D44410 /* Preview Content */,
 			);
@@ -164,6 +167,7 @@
 				BCA16EA7281A351E00D44410 /* MainView.swift in Sources */,
 				BCA16EC2281B7E9C00D44410 /* DetailView.swift in Sources */,
 				BCA16EB3281A5BE800D44410 /* SearchView.swift in Sources */,
+				BC50FDAF281D2A2B007C25D1 /* TestView.swift in Sources */,
 				BCA16EB1281A5BD100D44410 /* CollectView.swift in Sources */,
 				BCA16E97281A1B7300D44410 /* FormatDescriptionApp.swift in Sources */,
 				BCA16EA9281A3E8A00D44410 /* ColorExtension.swift in Sources */,

@@ -9,67 +9,94 @@ import SwiftUI
 
 struct CategoryView: View {
     let fileList: [Format]
-    let buttonColor: String
     let fileType: FileType
-    @State var isLinkActive: [Bool]
+    let buttonColor: String
+    let selectedColor: String
+    @State var selectedIndex: [Int]
+    @State var isClicked: [Bool]
+    @State var isLinkActive = false
     
     //image인지 video인지에 따라 구분
     init(fileType: FileType) {
         if fileType == .Image {
             fileList = FormatData.imageFormats
             self.buttonColor = "#FCF8CD"
+            self.selectedColor = "#E8E4BA"
         } else {
             fileList = FormatData.videoFormats
             self.buttonColor = "#FDE4D0"
+            self.selectedColor = "#E2CCBB"
         }
-        self.isLinkActive = [Bool](repeating: false, count: fileList.count)
         self.fileType = fileType
+        self.selectedIndex = []
+        self.isClicked = [Bool](repeating: false, count: fileList.count)
     }
     
     //카테고리 버튼 형식 구현
     func makeCategoryButton(index: Int) -> some View {
-        return NavigationLink(destination: DetailView(fileType: fileType, selectedIndex: index), isActive: $isLinkActive[index]){
+        return NavigationLink(destination: DetailView(fileType: fileType, selectedIndex: selectedIndex), isActive: $isLinkActive){
             Button(action:{
-                isLinkActive[index] = true
+                isClicked[index].toggle()
             }){
                 Text(fileList[index].name)
                     .padding(20)
                     .frame(width: 170)
                     .foregroundColor(Color.black)
-                    .background(Color(hex: buttonColor))
+                    .background(Color(hex: isClicked[index] ? selectedColor : buttonColor))
                     .font(.system(size: 20))
                     .cornerRadius(15)
-                    .shadow(radius: 3, x: 3, y: 3)
+                    .padding(.vertical, 5)
+                    .shadow(radius: 2, x: 2, y: 2)
+                    .overlay(
+                        Image(systemName: "checkmark.square.fill")
+                            .padding(.top, 10)
+                            .padding(.trailing, 5)
+                            .foregroundColor(Color(hex: "#0BC936"))
+                            .font(.system(size: 20))
+                            .opacity(isClicked[index] ? 1 : 0),
+                        alignment: .topTrailing
+                    )
             }
         }
     }
     
     var body: some View {
-        //2개씩 나오는 그리드 뷰 구현
-        ScrollView{
-            VStack(spacing: 15) {
-                ForEach(0..<fileList.count/2, id: \.self) { i in
-                    HStack(spacing: 15) {
-                        ForEach(0..<2) { j in
-                            makeCategoryButton(index: i*2+j)
-                        }
-                    }
-                }
-                //리스트의 아이템 개수가 홀수개라면 하나 따로 추가
-                if fileList.count%2 == 1{
-                    HStack(spacing: 15){
-                        makeCategoryButton(index: fileList.count-1)
-                        Text("")
-                            .padding(20)
-                            .frame(width: 170)
+        VStack{
+            //2개씩 나오는 그리드 뷰 구현
+            ScrollView {
+                LazyVGrid(columns: [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]){
+                    ForEach(0..<fileList.count, id: \.self) { i in
+                        makeCategoryButton(index: i)
                     }
                 }
             }
-            .frame(maxWidth: .infinity)
+            .navigationTitle("이미지")
+            .navigationBarTitleDisplayMode(.inline)
+            
+            //선택 버튼
+            Button (action: {
+                selectedIndex = []
+                for (idx, clicked) in isClicked.enumerated() {
+                    if clicked {
+                            selectedIndex.append(idx)
+                            isClicked[idx] = false
+                    }
+                }
+                isLinkActive = true
+            }) {
+                Text("선택하기")
+                    .foregroundColor(Color.black)
+                    .font(.system(size: 20, weight: .bold))
+                    .frame(width: 200, height: 70)
+                    .background(Color(hex: fileType == .Image ? "#FFEA67" : "#FFBE78"))
+                    .cornerRadius(15)
+                    .shadow(radius: 5, x: 5, y: 5)
+            }
         }
-        .navigationTitle("이미지")
-        .navigationBarTitleDisplayMode(.inline)
-        .padding(.top, 20)
+        .padding()
     }
 }
 
