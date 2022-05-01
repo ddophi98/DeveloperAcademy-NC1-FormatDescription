@@ -35,12 +35,13 @@ struct DetailView: View {
             TabView {
                 ForEach(showingFormats, id: \.name){ format in
                     VStack{
+                        Text("\(format.name)")
+                            .font(.system(size: 30, weight: .semibold))
                         Image(format.fileName)
                             .resizable()
                             .cornerRadius(20)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 320)
-                            .padding(.top, 20)
                         ScrollView{
                             VStack{
                                 Text(format.description)
@@ -53,7 +54,7 @@ struct DetailView: View {
                             }
                         }
                         .padding()
-                        .frame(width: 320,height: 380)
+                        .frame(width: 320,height: 350)
                         .foregroundColor(Color.black)
                         .background(Color(hex: "#FFE3E5"))
                         .cornerRadius(15)

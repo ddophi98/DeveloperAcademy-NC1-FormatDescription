@@ -19,7 +19,7 @@ struct MainView: View {
                 MainButton(imageName: "photo", description: "이미지", iconColor: Color(hex: "#FFC900"), backgroundColor: Color(hex: "#FCF8CD"), viewType: .ImageCategoryView)
                 MainButton(imageName: "video.fill", description: "비디오", iconColor: Color(hex: "#FF7100"), backgroundColor: Color(hex: "#FDE4D0"), viewType: .VideoCategoryView)
                 MainButton(imageName: "circle.grid.3x3.circle.fill", description: "모아보기", iconColor: Color(hex: "#ED5E67"), backgroundColor: Color(hex: "#FFCFD2"), viewType: .CollectView)
-                MainButton(imageName: "magnifyingglass.circle.fill", description: "검색", iconColor: Color(hex: "#FF31D9"), backgroundColor: Color(hex: "#F1C0E8"), viewType: .SearchView)
+                MainButton(imageName: "magnifyingglass.circle.fill", description: "검색하기", iconColor: Color(hex: "#FF31D9"), backgroundColor: Color(hex: "#F1C0E8"), viewType: .SearchView)
             }
             .navigationBarHidden(true)
         }

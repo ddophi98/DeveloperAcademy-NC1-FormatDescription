@@ -11,13 +11,15 @@ struct CollectView: View {
     var body: some View {
         VStack {
             ScrollView {
+                // 이미지 타이틀
                 Text("이미지")
                     .padding()
-                    .font(.system(size: 25))
+                    .font(.system(size: 25, weight: .semibold))
                     .frame(width: 350)
                     .foregroundColor(Color.black)
                     .background(Color(hex: "#EEE7F9"))
                     .cornerRadius(15)
+                // 이미지 모아서 보여주기
                 LazyVGrid(columns: [
                     GridItem(.flexible()),
                     GridItem(.flexible())
@@ -25,7 +27,7 @@ struct CollectView: View {
                     ForEach(FormatData.imageFormats, id: \.name) { format in
                         VStack (spacing: 5){
                             Text("\(format.name)")
-                                .font(.system(size: 20))
+                                .font(.system(size: 20, weight: .semibold))
                             Image(format.fileName)
                                 .resizable()
                                 .cornerRadius(20)
@@ -49,14 +51,15 @@ struct CollectView: View {
                     }
                 }
                 .padding(.bottom, 20)
-                
+                // 비디오 타이틀
                 Text("비디오")
                     .padding()
-                    .font(.system(size: 30))
+                    .font(.system(size: 25, weight: .semibold))
                     .frame(width: 350)
                     .foregroundColor(Color.black)
                     .background(Color(hex: "#EEE7F9"))
                     .cornerRadius(15)
+                // 비디오 모아서 보여주기
                 LazyVGrid(columns: [
                     GridItem(.flexible()),
                     GridItem(.flexible())
@@ -64,7 +67,7 @@ struct CollectView: View {
                     ForEach(FormatData.videoFormats, id: \.name) { format in
                         VStack (spacing: 5){
                             Text("\(format.name)")
-                                .font(.system(size: 20))
+                                .font(.system(size: 20, weight: .semibold))
                             Image(format.fileName)
                                 .resizable()
                                 .cornerRadius(20)
@@ -90,8 +93,7 @@ struct CollectView: View {
                 .padding(.bottom, 20)
             }
         }
-        .navigationTitle("모아보기")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarHidden(true)
     }
 }
 

@@ -34,29 +34,27 @@ struct CategoryView: View {
     
     //카테고리 버튼 형식 구현
     func makeCategoryButton(index: Int) -> some View {
-        return NavigationLink(destination: DetailView(fileType: fileType, selectedIndex: selectedIndex), isActive: $isLinkActive){
-            Button(action:{
-                isClicked[index].toggle()
-            }){
-                Text(fileList[index].name)
-                    .padding(20)
-                    .frame(width: 170)
-                    .foregroundColor(Color.black)
-                    .background(Color(hex: isClicked[index] ? selectedColor : buttonColor))
-                    .font(.system(size: 20))
-                    .cornerRadius(15)
-                    .padding(.vertical, 5)
-                    .shadow(radius: 2, x: 2, y: 2)
-                    .overlay(
-                        Image(systemName: "checkmark.square.fill")
-                            .padding(.top, 10)
-                            .padding(.trailing, 5)
-                            .foregroundColor(Color(hex: "#0BC936"))
-                            .font(.system(size: 20))
-                            .opacity(isClicked[index] ? 1 : 0),
-                        alignment: .topTrailing
-                    )
-            }
+        return Button(action:{
+            isClicked[index].toggle()
+        }){
+            Text(fileList[index].name)
+                .padding(20)
+                .frame(width: 170)
+                .foregroundColor(Color.black)
+                .background(Color(hex: isClicked[index] ? selectedColor : buttonColor))
+                .font(.system(size: 20))
+                .cornerRadius(15)
+                .padding(.vertical, 5)
+                .shadow(radius: 2, x: 2, y: 2)
+                .overlay(
+                    Image(systemName: "checkmark.circle.fill")
+                        .padding(.top, 10)
+                        .padding(.trailing, 5)
+                        .foregroundColor(Color(hex: "#0BC936"))
+                        .font(.system(size: 20))
+                        .opacity(isClicked[index] ? 1 : 0),
+                    alignment: .topTrailing
+                )
         }
     }
     
@@ -97,6 +95,7 @@ struct CategoryView: View {
         .padding()
         .navigationTitle(fileType == .Image ? "이미지" : "비디오")
         .navigationBarTitleDisplayMode(.inline)
+        .background(NavigationLink(destination: DetailView(fileType: fileType, selectedIndex: selectedIndex), isActive: $isLinkActive){})
     }
 }
 
