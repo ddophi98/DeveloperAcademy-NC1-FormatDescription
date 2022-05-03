@@ -11,7 +11,6 @@ struct DetailView: View {
     let fileType: FileType
     let fileList: [Format]
     var showingFormats:[Format]
-    @State var showActionSheet:Bool = false
     
     // 선택한 카테고리 정보 보여주도록 설정하기
     init(fileType: FileType, selectedIndex: [Int]){
@@ -29,6 +28,14 @@ struct DetailView: View {
         }
     }
     
+    func getDestination(format: Format) -> some View{
+        return ZoomableScrollView{
+            Image(format.fileName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        }
+    }
+    
     var body: some View {
         VStack {
             // 페이지 뷰 구현
@@ -42,22 +49,58 @@ struct DetailView: View {
                             .cornerRadius(20)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 320)
-                        ScrollView{
-                            VStack{
-                                Text(format.description)
-                                    .font(.system(size: 20))
-                                    .padding(.vertical, 10)
-                                Text("용량: \(format.volume)")
-                                    .font(.system(size: 15))
-                                Text("사용환경: \(format.environment)")
-                                    .font(.system(size: 15))
+                            .overlay(alignment: .bottomTrailing){
+                                NavigationLink(destination: getDestination(format: format)){
+                                    Image(systemName: "plus.magnifyingglass")
+                                        .padding(.bottom, 15)
+                                        .padding(.trailing, 15)
+                                        .font(.system(size: 30))
+                                }
                             }
+                        VStack {
+                            ScrollView{
+                                VStack(alignment: .leading){
+                                    ForEach(format.description, id: \.self){ dscr in
+                                        Label {
+                                            Text(dscr)
+                                                .font(.system(size: 20))
+                                        } icon : {
+                                            Image(systemName: "circle.fill")
+                                                .font(.system(size: 7))
+                                        }
+                                        .padding(.vertical, 5)
+                                    }
+                                }
+                            }
+                            .padding()
+                            .frame(width: 320,height: 270, alignment: .topLeading)
+                            .foregroundColor(Color.black)
+                            .background(Color(hex: "#FFE3E5"))
+                            .cornerRadius(15)
+                            VStack(alignment: .leading, spacing: 5){
+                                Label {
+                                    Text("용량: \(format.volume)")
+                                        .font(.system(size: 15))
+                                } icon : {
+                                    Image(systemName: "circle.fill")
+                                        .font(.system(size: 5))
+                                }
+                                if !format.environment.isEmpty {
+                                    Label {
+                                        Text("주 사용환경: \(format.environment)")
+                                            .font(.system(size: 15))
+                                    } icon : {
+                                        Image(systemName: "circle.fill")
+                                            .font(.system(size: 5))
+                                    }
+                                }
+                            }
+                            .padding()
+                            .frame(width: 320, alignment: .leading)
+                            .foregroundColor(Color.black)
+                            .background(Color(hex: "#FFE3E5"))
+                            .cornerRadius(15)
                         }
-                        .padding()
-                        .frame(width: 320,height: 350)
-                        .foregroundColor(Color.black)
-                        .background(Color(hex: "#FFE3E5"))
-                        .cornerRadius(15)
                         Spacer()
                     }
                 }
@@ -70,7 +113,7 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(fileType: .Image, selectedIndex: [0, 1, 2])
+        DetailView(fileType: .Image, selectedIndex: [1, 2])
     }
 }
 
