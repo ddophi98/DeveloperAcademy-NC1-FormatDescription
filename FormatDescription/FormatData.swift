@@ -28,7 +28,7 @@ class FormatData{
                 "RGB 이미지의 모든 색상 정보를 저장한다.",
                 "손실 압축 방식을 이용하긴 하지만 사람의 눈에 거슬리지 않는 부분을 손실시켜, 화질을 최대한 보존한다."
             ],
-            volume: 1000,
+            volume: 21,
             environment: "",
             fileName: "sample_jpeg"
             ),
@@ -40,9 +40,9 @@ class FormatData{
                 "날카로운 경계를 갖고 있는 이미지를 부드럽게 처리해준다.",
                 "용량이 비교적 크다."
             ],
-            volume: 1000,
+            volume: 186,
             environment: "",
-            fileName: "sample_jpeg"
+            fileName: "sample_png"
             ),
         Format(
             name: "BMP",
@@ -50,9 +50,9 @@ class FormatData{
                 "압축이 되지 않은 원본 이미지이다.",
                 "화질이 우수하지만 용량이 크다."
             ],
-            volume: 1000,
+            volume: 1200,
             environment: "Window",
-            fileName: "sample_jpeg"
+            fileName: "sample_bmp"
             ),
         Format(
             name: "GIF",
@@ -61,9 +61,9 @@ class FormatData{
                 "8비트 256색상으로 제한된다.",
                 "알파 채널을 지원한다."
             ],
-            volume: 1000,
+            volume: 166,
             environment: "",
-            fileName: "sample_jpeg"
+            fileName: "sample_gif"
             ),
         Format(
             name: "TIFF",
@@ -73,9 +73,9 @@ class FormatData{
                 "다양한 압축 방식을 제공한다",
                 "파일 용량이 큰 편이다"
             ],
-            volume: 1000,
+            volume: 1200,
             environment: "",
-            fileName: "sample_jpeg"
+            fileName: "sample_tiff"
             ),
         Format(
             name: "RAW",
@@ -85,9 +85,9 @@ class FormatData{
                 "압축되지 않거나, 무손실 압축 방식을 사용해서 화질이 좋다.",
                 "파일 용량이 큰 편이다."
             ],
-            volume: 1000,
+            volume: 0,
             environment: "",
-            fileName: "sample_jpeg"
+            fileName: ""
             ),
         Format(
             name: "PSD",
@@ -96,9 +96,9 @@ class FormatData{
                 "비트맵 방식을 기본으로 사용한다.",
                 "이미지 정보 뿐 아니라 레이어, 패스, 벡터, 채널 등의 정보도 저장할 수 있다."
             ],
-            volume: 1000,
+            volume: 2400,
             environment: "Adobe Photoshop",
-            fileName: "sample_jpeg"
+            fileName: "sample_psd"
             ),
         Format(
             name: "SVG",
@@ -107,9 +107,9 @@ class FormatData{
                 "벡터 방식을 사용하므로 크기 조절로 인한 화질이 저하가 없다.",
                 "파일 크기가 작고 로드 속도가 빠르다."
             ],
-            volume: 1000,
+            volume: 3,
             environment: "웹",
-            fileName: "sample_jpeg"
+            fileName: "sample_svg"
             ),
         Format(
             name: "WebP",
@@ -119,9 +119,9 @@ class FormatData{
                 "손실 압축, 무손실 압축을 모두 지원한다.",
                 "파일 크기가 비교적 작다."
             ],
-            volume: 1000,
+            volume: 25,
             environment: "웹",
-            fileName: "sample_jpeg"
+            fileName: "sample_webp"
             ),
         Format(
             name: "EPS",
@@ -130,9 +130,9 @@ class FormatData{
                 "벡터와 비트맵 이미지를 동시에 저장 가능하다.",
                 "CMYK(색상 모형) 모드를 완벽하게 지원한다."
             ],
-            volume: 1000,
+            volume: 7,
             environment: "인쇄 및 출력",
-            fileName: "sample_jpeg"
+            fileName: "sample_eps"
             ),
         Format(
             name: "PDF",
@@ -143,9 +143,9 @@ class FormatData{
                 "PDF 파일 자체를 편집하기는 어렵다.",
                 "파일 크기가 비교적 작다."
             ],
-            volume: 1000,
+            volume: 23,
             environment: "문서",
-            fileName: "sample_jpeg"
+            fileName: "sample_pdf"
             ),
         Format(
             name: "AI",
@@ -154,9 +154,9 @@ class FormatData{
                 "벡터 방식을 사용하므로 크기 조절로 인한 화질이 저하가 없다",
                 "로고 제작, 캐릭터 작업 등 새로운 것을 창조해내는 작업에 유용하다."
             ],
-            volume: 1000,
+            volume: 4,
             environment: "Adobe illustrator",
-            fileName: "sample_jpeg"
+            fileName: "sample_ai"
             ),
     ]
     static let videoFormats = [

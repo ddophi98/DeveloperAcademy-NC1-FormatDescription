@@ -28,11 +28,46 @@ struct DetailView: View {
         }
     }
     
+    // 이미지 누르면 확대할 수 있는 뷰를 반환
     func getDestination(format: Format) -> some View{
         return ZoomableScrollView{
             Image(format.fileName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+        }
+    }
+    
+    // 이미지를 표시할 수 있는지 여부에 따라 다른 뷰를 반환
+    func getImage(format: Format) -> some View{
+        if UIImage(named: format.fileName) != nil{
+            return AnyView(Image(format.fileName)
+                .resizable()
+                .cornerRadius(20)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 320)
+                .overlay(alignment: .bottomTrailing){
+                    NavigationLink(destination: getDestination(format: format)){
+                        Image(systemName: "plus.magnifyingglass")
+                            .padding(.bottom, 15)
+                            .padding(.trailing, 15)
+                            .font(.system(size: 30))
+                    }
+                }
+            )
+        } else {
+            return AnyView(Rectangle()
+                .frame(width: 320, height: 230)
+                .foregroundColor(Color.white)
+                .overlay{
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(style: StrokeStyle(lineWidth: 2, dash: [5]))
+                }
+                .overlay{
+                    Text("해당 포맷은 표시할 수 없습니다")
+                        .font(.system(size: 25))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                })
         }
     }
     
@@ -44,19 +79,7 @@ struct DetailView: View {
                     VStack{
                         Text("\(format.name)")
                             .font(.system(size: 30, weight: .semibold))
-                        Image(format.fileName)
-                            .resizable()
-                            .cornerRadius(20)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 320)
-                            .overlay(alignment: .bottomTrailing){
-                                NavigationLink(destination: getDestination(format: format)){
-                                    Image(systemName: "plus.magnifyingglass")
-                                        .padding(.bottom, 15)
-                                        .padding(.trailing, 15)
-                                        .font(.system(size: 30))
-                                }
-                            }
+                        getImage(format: format)
                         VStack {
                             ScrollView{
                                 VStack(alignment: .leading){
@@ -75,11 +98,11 @@ struct DetailView: View {
                             .padding()
                             .frame(width: 320,height: 270, alignment: .topLeading)
                             .foregroundColor(Color.black)
-                            .background(Color(hex: "#FFE3E5"))
+                            .background(Color(hex: "#F9ECF7"))
                             .cornerRadius(15)
                             VStack(alignment: .leading, spacing: 5){
                                 Label {
-                                    Text("용량: \(format.volume)")
+                                    Text("용량: \(format.volume)KB")
                                         .font(.system(size: 15))
                                 } icon : {
                                     Image(systemName: "circle.fill")
@@ -98,7 +121,7 @@ struct DetailView: View {
                             .padding()
                             .frame(width: 320, alignment: .leading)
                             .foregroundColor(Color.black)
-                            .background(Color(hex: "#FFE3E5"))
+                            .background(Color(hex: "#F9ECF7"))
                             .cornerRadius(15)
                         }
                         Spacer()
@@ -113,7 +136,7 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(fileType: .Image, selectedIndex: [1, 2])
+        DetailView(fileType: .Image, selectedIndex: [3])
     }
 }
 

@@ -42,7 +42,7 @@ struct CollectView: View {
                         }
                     VStack (alignment: .leading) {
                         Label {
-                            Text("용량: \(format.volume)")
+                            Text("용량: \(format.volume)KB")
                                 .font(.system(size: 15))
                         } icon : {
                             Image(systemName: "circle")
