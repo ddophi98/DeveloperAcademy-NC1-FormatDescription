@@ -21,11 +21,11 @@ struct CategoryView: View {
         if fileType == .Image {
             fileList = FormatData.imageFormats
             self.buttonColor = "#FCF8CD"
-            self.selectedColor = "#E8E4BA"
+            self.selectedColor = "#CBC79F"
         } else {
             fileList = FormatData.videoFormats
             self.buttonColor = "#FDE4D0"
-            self.selectedColor = "#E2CCBB"
+            self.selectedColor = "#C9B6A7"
         }
         self.fileType = fileType
         self.selectedIndex = []

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct DetailView: View {
     let fileType: FileType
@@ -37,37 +38,59 @@ struct DetailView: View {
         }
     }
     
-    // 이미지를 표시할 수 있는지 여부에 따라 다른 뷰를 반환
-    func getImage(format: Format) -> some View{
-        if UIImage(named: format.fileName) != nil{
-            return AnyView(Image(format.fileName)
-                .resizable()
-                .cornerRadius(20)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 320)
-                .overlay(alignment: .bottomTrailing){
-                    NavigationLink(destination: getDestination(format: format)){
-                        Image(systemName: "plus.magnifyingglass")
-                            .padding(.bottom, 15)
-                            .padding(.trailing, 15)
-                            .font(.system(size: 30))
+    // 파일의 종류와, 표시할 수 있는지 여부에 따라 다른 뷰를 반환
+    func getFile(format: Format) -> some View{
+        if fileType == .Image {
+            if UIImage(named: format.fileName) != nil{
+                return AnyView(Image(format.fileName)
+                    .resizable()
+                    .cornerRadius(20)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 320)
+                    .overlay(alignment: .bottomTrailing){
+                        NavigationLink(destination: getDestination(format: format)){
+                            Image(systemName: "plus.magnifyingglass")
+                                .padding(.bottom, 15)
+                                .padding(.trailing, 15)
+                                .font(.system(size: 30))
+                        }
                     }
-                }
-            )
+                )
+            } else {
+                return AnyView(Rectangle()
+                    .frame(width: 320, height: 230)
+                    .foregroundColor(Color.white)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(style: StrokeStyle(lineWidth: 2, dash: [5]))
+                    }
+                    .overlay{
+                        Text("해당 포맷은 표시할 수 없습니다")
+                            .font(.system(size: 25))
+                            .multilineTextAlignment(.center)
+                            .padding()
+                    })
+            }
         } else {
-            return AnyView(Rectangle()
-                .frame(width: 320, height: 230)
-                .foregroundColor(Color.white)
-                .overlay{
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(style: StrokeStyle(lineWidth: 2, dash: [5]))
-                }
-                .overlay{
-                    Text("해당 포맷은 표시할 수 없습니다")
-                        .font(.system(size: 25))
-                        .multilineTextAlignment(.center)
-                        .padding()
-                })
+            if let videoUrl = URL(string: format.fileName){
+                return AnyView(AutoRotate(url: videoUrl)
+                    .frame(width: 320, height: 200))
+            }
+            else {
+                return AnyView(Rectangle()
+                    .frame(width: 320, height: 200)
+                    .foregroundColor(Color.white)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(style: StrokeStyle(lineWidth: 2, dash: [5]))
+                    }
+                    .overlay{
+                        Text("해당 포맷은 표시할 수 없습니다")
+                            .font(.system(size: 25))
+                            .multilineTextAlignment(.center)
+                            .padding()
+                    })
+            }
         }
     }
     
@@ -79,7 +102,7 @@ struct DetailView: View {
                     VStack{
                         Text("\(format.name)")
                             .font(.system(size: 30, weight: .semibold))
-                        getImage(format: format)
+                        getFile(format: format)
                         VStack {
                             ScrollView{
                                 VStack(alignment: .leading){
@@ -136,7 +159,7 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(fileType: .Image, selectedIndex: [3])
+        DetailView(fileType: .Video, selectedIndex: [3])
     }
 }
 

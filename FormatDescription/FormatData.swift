@@ -18,6 +18,7 @@ struct Format{
     let volume: Int
     let environment: String
     let fileName: String
+    let fileType: FileType
 }
 
 class FormatData{
@@ -30,7 +31,8 @@ class FormatData{
             ],
             volume: 21,
             environment: "",
-            fileName: "sample_jpeg"
+            fileName: "sample_jpeg",
+            fileType: .Image
             ),
         Format(
             name: "PNG",
@@ -42,7 +44,8 @@ class FormatData{
             ],
             volume: 186,
             environment: "",
-            fileName: "sample_png"
+            fileName: "sample_png",
+            fileType: .Image
             ),
         Format(
             name: "BMP",
@@ -52,7 +55,8 @@ class FormatData{
             ],
             volume: 1200,
             environment: "Window",
-            fileName: "sample_bmp"
+            fileName: "sample_bmp",
+            fileType: .Image
             ),
         Format(
             name: "GIF",
@@ -63,7 +67,8 @@ class FormatData{
             ],
             volume: 166,
             environment: "",
-            fileName: "sample_gif"
+            fileName: "sample_gif",
+            fileType: .Image
             ),
         Format(
             name: "TIFF",
@@ -75,7 +80,8 @@ class FormatData{
             ],
             volume: 1200,
             environment: "",
-            fileName: "sample_tiff"
+            fileName: "sample_tiff",
+            fileType: .Image
             ),
         Format(
             name: "RAW",
@@ -87,7 +93,8 @@ class FormatData{
             ],
             volume: 0,
             environment: "",
-            fileName: ""
+            fileName: "",
+            fileType: .Image
             ),
         Format(
             name: "PSD",
@@ -98,7 +105,8 @@ class FormatData{
             ],
             volume: 2400,
             environment: "Adobe Photoshop",
-            fileName: "sample_psd"
+            fileName: "sample_psd",
+            fileType: .Image
             ),
         Format(
             name: "SVG",
@@ -109,7 +117,8 @@ class FormatData{
             ],
             volume: 3,
             environment: "웹",
-            fileName: "sample_svg"
+            fileName: "sample_svg",
+            fileType: .Image
             ),
         Format(
             name: "WebP",
@@ -121,7 +130,8 @@ class FormatData{
             ],
             volume: 25,
             environment: "웹",
-            fileName: "sample_webp"
+            fileName: "sample_webp",
+            fileType: .Image
             ),
         Format(
             name: "EPS",
@@ -132,7 +142,8 @@ class FormatData{
             ],
             volume: 7,
             environment: "인쇄 및 출력",
-            fileName: "sample_eps"
+            fileName: "sample_eps",
+            fileType: .Image
             ),
         Format(
             name: "PDF",
@@ -145,7 +156,8 @@ class FormatData{
             ],
             volume: 23,
             environment: "문서",
-            fileName: "sample_pdf"
+            fileName: "sample_pdf",
+            fileType: .Image
             ),
         Format(
             name: "AI",
@@ -156,7 +168,8 @@ class FormatData{
             ],
             volume: 4,
             environment: "Adobe illustrator",
-            fileName: "sample_ai"
+            fileName: "sample_ai",
+            fileType: .Image
             ),
     ]
     static let videoFormats = [
@@ -167,9 +180,10 @@ class FormatData{
                 "인터넷을 통한 스트리밍을 지원한다.",
                 "편집, 출력, 재생 시 높은 사양이 요구될 수 있다."
             ],
-            volume: 1000,
+            volume: 3400,
             environment: "",
-            fileName: "sample_jpeg"
+            fileName: "https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/GTYSdDW/sunlight-through-trees-in-redwood-forest__7a9b3cb5ab25d4d3b8f4f397ce4b085d__P360.mp4",
+            fileType: .Video
             ),
         Format(
             name: "AVI",
@@ -177,9 +191,10 @@ class FormatData{
                 "다양한 종류의 코덱을 지원하여 여러 환경에서 재생할 수 있다.",
                 "본래 용도는 PC에서 재생되는 것이라, 다른 기기에서는 제한이 있을 수도 있다."
             ],
-            volume: 1000,
+            volume: 0,
             environment: "Window",
-            fileName: "sample_jpeg"
+            fileName: "https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/GTYSdDW/sunlight-through-trees-in-redwood-forest__7a9b3cb5ab25d4d3b8f4f397ce4b085d__P360.mp4",
+            fileType: .Video
             ),
         Format(
             name: "WMV",
@@ -187,9 +202,10 @@ class FormatData{
                 "DRM. 메타정보 같은 추가 정보들을 제공한다.",
                 "높은 압축률로 파일 용량을 작게 만들기 때문에 실시간 스트리밍에 적합하다."
             ],
-            volume: 1000,
+            volume: 0,
             environment: "Window",
-            fileName: "sample_jpeg"
+            fileName: "sample_jpeg",
+            fileType: .Video
             ),
         Format(
             name: "MKV",
@@ -197,9 +213,10 @@ class FormatData{
                 "개수 제한 없이 비디오, 오디오, 그림, 자막 등 멀티미디어 콘텐츠를 담기 위한 포맷이다.",
                 "코덱 종류에 상관없이 모든 스트림을 담을 수 있다."
             ],
-            volume: 1000,
+            volume: 0,
             environment: "",
-            fileName: "sample_jpeg"
+            fileName: "sample_jpeg",
+            fileType: .Video
             ),
         Format(
             name: "MOV",
@@ -207,9 +224,10 @@ class FormatData{
                 "다양한 종류의 코덱을 지원하여 여러 환경에서 재생할 수 있다.",
                 "실시간 스트리밍을 지원하며 VR 기능도 지원한다."
             ],
-            volume: 1000,
+            volume: 0,
             environment: "Mac",
-            fileName: "sample_jpeg"
+            fileName: "sample_jpeg",
+            fileType: .Video
             ),
         Format(
             name: "MPEG-PS/TS",
@@ -219,9 +237,10 @@ class FormatData{
                 "원본에 가까운 고화질의 영상을 볼 수 있다.",
                 "패킷 단위로 재생되기 때문에 압축이 되지 않아 용량이 큰 편에 속한다."
             ],
-            volume: 1000,
+            volume: 0,
             environment: "디지털 방송",
-            fileName: "sample_jpeg"
+            fileName: "sample_jpeg",
+            fileType: .Video
             ),
         Format(
             name: "3GP",
@@ -229,9 +248,10 @@ class FormatData{
                 "3G 모바일 환경에서 사용하도록 만들어진 컨테이너로 MP4의 단순화 버전이다.",
                 "최대 파일 크기와 해상도가 제한될 수 있다."
             ],
-            volume: 1000,
+            volume: 0,
             environment: "3G 모바일 환경",
-            fileName: "sample_jpeg"
+            fileName: "sample_jpeg",
+            fileType: .Video
             ),
         Format(
             name: "WebM",
@@ -240,59 +260,10 @@ class FormatData{
                 "스트리밍 환경에서 비교적 안정적이다.",
                 "압축률과 인코딩 효율이 비교적 떨어진다."
             ],
-            volume: 1000,
+            volume: 0,
             environment: "웹",
-            fileName: "sample_jpeg"
+            fileName: "sample_jpeg",
+            fileType: .Video
             ),
     ]
  }
-
-struct ZoomableScrollView<Content: View>: UIViewRepresentable {
-  private var content: Content
-
-  init(@ViewBuilder content: () -> Content) {
-    self.content = content()
-  }
-
-  func makeUIView(context: Context) -> UIScrollView {
-    // set up the UIScrollView
-    let scrollView = UIScrollView()
-    scrollView.delegate = context.coordinator  // for viewForZooming(in:)
-    scrollView.maximumZoomScale = 20
-    scrollView.minimumZoomScale = 1
-    scrollView.bouncesZoom = true
-
-    // create a UIHostingController to hold our SwiftUI content
-    let hostedView = context.coordinator.hostingController.view!
-    hostedView.translatesAutoresizingMaskIntoConstraints = true
-    hostedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    hostedView.frame = scrollView.bounds
-    scrollView.addSubview(hostedView)
-
-    return scrollView
-  }
-
-  func makeCoordinator() -> Coordinator {
-    return Coordinator(hostingController: UIHostingController(rootView: self.content))
-  }
-
-  func updateUIView(_ uiView: UIScrollView, context: Context) {
-    // update the hosting controller's SwiftUI content
-    context.coordinator.hostingController.rootView = self.content
-    assert(context.coordinator.hostingController.view.superview == uiView)
-  }
-
-  // MARK: - Coordinator
-
-  class Coordinator: NSObject, UIScrollViewDelegate {
-    var hostingController: UIHostingController<Content>
-
-    init(hostingController: UIHostingController<Content>) {
-      self.hostingController = hostingController
-    }
-
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-      return hostingController.view
-    }
-  }
-}

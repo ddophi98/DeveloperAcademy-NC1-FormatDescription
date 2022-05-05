@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct CollectView: View {
-    
+    // 이미지 누르면 확대할 수 있는 뷰를 반환
     func getDestination(format: Format) -> some View{
         return ZoomableScrollView{
             Image(format.fileName)
@@ -16,7 +17,63 @@ struct CollectView: View {
                 .aspectRatio(contentMode: .fit)
         }
     }
-    
+    // 파일을 표시할 수 있는지 여부에 따라 다른 뷰를 반환
+    func getFile(format: Format) -> some View{
+        if format.fileType == .Image {
+            if UIImage(named: format.fileName) != nil{
+                return AnyView(Image(format.fileName)
+                    .resizable()
+                    .cornerRadius(20)
+                    .aspectRatio(contentMode: .fit)
+                    .padding(.horizontal, 5)
+                    .padding(.bottom, 5)
+                    .overlay(alignment: .bottomTrailing){
+                        NavigationLink(destination: getDestination(format: format)){
+                            Image(systemName: "plus.magnifyingglass")
+                                .padding(.bottom, 15)
+                                .padding(.trailing, 15)
+                                .font(.system(size: 20))
+                        }
+                    })
+            } else {
+                return AnyView(Rectangle()
+                    .frame(width: 150, height: 100)
+                    .foregroundColor(Color.white)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
+                    }
+                    .overlay{
+                        Text("해당 포맷은 표시할 수 없습니다")
+                            .font(.system(size: 15))
+                            .multilineTextAlignment(.center)
+                            .padding()
+                    }
+                    .padding(.bottom, 10))
+            }
+        } else {
+            if let videoUrl = URL(string: format.fileName){
+                return AnyView(AutoRotate(url: videoUrl)
+                    .frame(width: 150, height: 100))
+            }
+            else {
+                return AnyView(Rectangle()
+                    .frame(width: 150, height: 100)
+                    .foregroundColor(Color.white)
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(style: StrokeStyle(lineWidth: 2, dash: [5]))
+                    }
+                    .overlay{
+                        Text("해당 포맷은 표시할 수 없습니다")
+                            .font(.system(size: 25))
+                            .multilineTextAlignment(.center)
+                            .padding()
+                    })
+            }
+        }
+    }
+    // 그리드뷰 제작
     func makeGridView(datas: [Format]) -> some View {
         return LazyVGrid(columns: [
             GridItem(.flexible(), alignment: .top),
@@ -26,20 +83,7 @@ struct CollectView: View {
                 VStack (spacing: 5){
                     Text("\(format.name)")
                         .font(.system(size: 20, weight: .semibold))
-                    Image(format.fileName)
-                        .resizable()
-                        .cornerRadius(20)
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.horizontal, 5)
-                        .padding(.bottom, 5)
-                        .overlay(alignment: .bottomTrailing){
-                            NavigationLink(destination: getDestination(format: format)){
-                                Image(systemName: "plus.magnifyingglass")
-                                    .padding(.bottom, 15)
-                                    .padding(.trailing, 15)
-                                    .font(.system(size: 20))
-                            }
-                        }
+                    getFile(format: format)
                     VStack (alignment: .leading) {
                         Label {
                             Text("용량: \(format.volume)KB")
