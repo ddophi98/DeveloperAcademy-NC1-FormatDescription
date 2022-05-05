@@ -89,7 +89,7 @@ struct CollectView: View {
                             Text("용량: \(format.volume)KB")
                                 .font(.system(size: 15))
                         } icon : {
-                            Image(systemName: "circle")
+                            Image(systemName: "circle.fill")
                                 .font(.system(size: 5))
                         }
                         if !format.environment.isEmpty {
@@ -97,7 +97,7 @@ struct CollectView: View {
                                 Text("주 사용환경: \(format.environment)")
                                     .font(.system(size: 15))
                             } icon : {
-                                Image(systemName: "circle")
+                                Image(systemName: "circle.fill")
                                     .font(.system(size: 5))
                             }
                         }
