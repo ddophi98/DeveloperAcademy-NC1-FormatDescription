@@ -182,7 +182,7 @@ class FormatData{
             ],
             volume: 3400,
             environment: "",
-            fileName: "https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/GTYSdDW/sunlight-through-trees-in-redwood-forest__7a9b3cb5ab25d4d3b8f4f397ce4b085d__P360.mp4",
+            fileName: "https://github.com/ddophi98/NC1_FormatDescription/blob/main/Files/sample.mp4",
             fileType: .Video
             ),
         Format(
@@ -193,7 +193,7 @@ class FormatData{
             ],
             volume: 0,
             environment: "Window",
-            fileName: "https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/GTYSdDW/sunlight-through-trees-in-redwood-forest__7a9b3cb5ab25d4d3b8f4f397ce4b085d__P360.mp4",
+            fileName: "sample_jpeg",
             fileType: .Video
             ),
         Format(
